@@ -1,6 +1,6 @@
 package me.balink.nat;
 
-import me.balink.nat.proxies.IProxy;
+import me.balink.nat.proxy.IProxy;
 import me.balink.nat.reference.Reference;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;

@@ -1,4 +1,4 @@
-package me.balink.nat.proxies;
+package me.balink.nat.proxy;
 
 public class ServerProxy extends CommonProxy {
 }
