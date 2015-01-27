@@ -1,0 +1,16 @@
+[
+{
+  "modid": "NotaThing",
+  "name": "Not a Thing",
+  "description": "I really don't think this actually exists, sorry.",
+  "version": "1.8-1.0",
+  "mcversion": "1.8",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["balink"],
+  "credits": "who the hell knows",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
