@@ -22,8 +22,8 @@ group = "me.balink.nat" // http://maven.apache.org/guides/mini/guide-naming-conv
 archivesBaseName = "NotaThing"
 
 minecraft {
-    version = "1.8-11.14.0.1290-1.8"
-    runDir = "eclipse"
+    version = "1.8-11.14.0.1295-1.8"
+    runDir = "runDir"
 
     // the mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   snapshot are built nightly.
