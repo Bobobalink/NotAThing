@@ -1,6 +1,6 @@
 package me.balink.nat;
 
-import me.balink.nat.handlers.configHandler;
+import me.balink.nat.handlers.ConfigurationHandler;
 import me.balink.nat.proxy.IProxy;
 import me.balink.nat.reference.Reference;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -21,8 +21,8 @@ public class NotaThing {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        configHandler.init(event.getSuggestedConfigurationFile());
-        FMLCommonHandler.instance().bus().register(new configHandler());
+        ConfigurationHandler.init(event.getSuggestedConfigurationFile());
+        FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
     }
 
     @Mod.EventHandler

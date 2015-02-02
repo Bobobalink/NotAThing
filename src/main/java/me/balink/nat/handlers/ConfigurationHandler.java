@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.io.File;
 
-public class configHandler {
+public class ConfigurationHandler {
     public static Configuration config;
     public static boolean configA = false;
     public static double configB = 0d;

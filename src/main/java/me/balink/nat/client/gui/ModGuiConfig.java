@@ -1,6 +1,6 @@
 package me.balink.nat.client.gui;
 
-import me.balink.nat.handlers.configHandler;
+import me.balink.nat.handlers.ConfigurationHandler;
 import me.balink.nat.reference.Reference;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
@@ -16,11 +16,11 @@ public class ModGuiConfig extends GuiConfig {
         super(
                 guiScreen,
                 Arrays.<IConfigElement>asList(
-                        new ConfigElement(configHandler.config.getCategory(Configuration.CATEGORY_GENERAL)),
-                        new ConfigElement(configHandler.config.getCategory("specific"))),
+                        new ConfigElement(ConfigurationHandler.config.getCategory(Configuration.CATEGORY_GENERAL)),
+                        new ConfigElement(ConfigurationHandler.config.getCategory("specific"))),
                 Reference.MOD_ID,
                 false,
                 false,
-                GuiConfig.getAbridgedConfigPath(configHandler.config.toString()));
+                GuiConfig.getAbridgedConfigPath(ConfigurationHandler.config.toString()));
     }
 }
