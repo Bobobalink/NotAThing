@@ -1,6 +1,7 @@
 package me.balink.nat;
 
 import me.balink.nat.handlers.ConfigurationHandler;
+import me.balink.nat.init.ModBlocks;
 import me.balink.nat.init.ModItems;
 import me.balink.nat.proxy.IProxy;
 import me.balink.nat.reference.Reference;
@@ -29,8 +30,10 @@ public class NotaThing {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-        if(event.getSide() == Side.CLIENT)
+        if(event.getSide() == Side.CLIENT) {
             ModItems.clientInit();
+            ModBlocks.clientInit();
+        }
     }
 
     @Mod.EventHandler

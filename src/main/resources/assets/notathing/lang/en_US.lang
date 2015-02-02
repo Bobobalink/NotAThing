@@ -1,0 +1,3 @@
+item.NotaThing:RandomThing.name=Random Thing
+tile.NotaThing:RandomBlock.name=Random Block
+itemGroup.NotaThing=Not a Thing

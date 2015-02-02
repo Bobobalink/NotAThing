@@ -1,17 +1,17 @@
 package me.balink.nat.init;
 
-import me.balink.nat.Items.ItemNAT;
-import me.balink.nat.Items.ItemRandomThing;
+import me.balink.nat.blocks.BlockNAT;
+import me.balink.nat.blocks.BlockRandomBlock;
 import me.balink.nat.reference.Reference;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ModItems {
-    public static final ItemNAT randomThing = new ItemRandomThing();
+public class ModBlocks {
+    public static final BlockNAT randomBlock = new BlockRandomBlock();
 
     @SideOnly(Side.CLIENT)
     public static void clientInit() {
-        randomThing.registerModel();
+        randomBlock.registerModel();
     }
 }
