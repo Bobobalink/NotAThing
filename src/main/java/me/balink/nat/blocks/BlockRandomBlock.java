@@ -1,5 +1,6 @@
 package me.balink.nat.blocks;
 
+import me.balink.nat.init.ModBlocks;
 import me.balink.nat.init.ModItems;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -20,10 +21,14 @@ public class BlockRandomBlock extends BlockNAT{
     
     @Override
     public boolean canPlaceBlockAt(World world,  BlockPos pos) {
-        int x = pos.getX();
-        int y = pos.getY() - 32;
-        int z = pos.getZ();
-        return x * x + y * y + z * z >= 1024 && super.canPlaceBlockAt(world, pos);
+        return  super.canPlaceBlockAt(world, pos)
+                && !(world.getBlockState(pos.down()).getBlock() instanceof BlockNAT)
+                && !(world.getBlockState(pos.up()).getBlock() instanceof BlockNAT)
+                && !(world.getBlockState(pos.east()).getBlock() instanceof BlockNAT)
+                && !(world.getBlockState(pos.west()).getBlock() instanceof BlockNAT)
+                && !(world.getBlockState(pos.north()).getBlock() instanceof BlockNAT)
+                && !(world.getBlockState(pos.south()).getBlock() instanceof BlockNAT)
+                ;
     }
 
     @Override
