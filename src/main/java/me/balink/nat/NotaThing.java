@@ -3,6 +3,7 @@ package me.balink.nat;
 import me.balink.nat.handlers.ConfigurationHandler;
 import me.balink.nat.init.ModBlocks;
 import me.balink.nat.init.ModItems;
+import me.balink.nat.init.ModRecipes;
 import me.balink.nat.proxy.IProxy;
 import me.balink.nat.reference.Reference;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -30,6 +31,7 @@ public class NotaThing {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
+        ModRecipes.init();
         if(event.getSide() == Side.CLIENT) {
             ModItems.clientInit();
             ModBlocks.clientInit();
