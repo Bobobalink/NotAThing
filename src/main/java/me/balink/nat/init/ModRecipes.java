@@ -1,5 +1,6 @@
 package me.balink.nat.init;
 
+import me.balink.nat.Recipes.RandomThingRecipe;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -30,5 +31,6 @@ public class ModRecipes {
                         new ItemStack(ModBlocks.randomBlock, 8),
                         new ItemStack(Items.nether_star),
                         new ItemStack(ModItems.randomThing)));
+        GameRegistry.addRecipe(new RandomThingRecipe());
     }
 }
