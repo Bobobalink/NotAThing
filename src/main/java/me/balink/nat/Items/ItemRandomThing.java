@@ -11,6 +11,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class ItemRandomThing extends ItemNAT {
 
     public ItemRandomThing() {
@@ -32,13 +34,27 @@ public class ItemRandomThing extends ItemNAT {
 
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
-        playerIn.heal(stack.stackSize / 8.0f);
         int range = stack.stackSize / 8 + 1;
-        for(int x = -1 * range; x <= range; x++)
-            for(int y = -1 * range; y <= range; y++)
-                for(int z = -1 * range; z <= range; z++)
-                    if(worldIn.canBlockBePlaced(ModBlocks.randomBlock, pos.add(x, y, z), false, side, playerIn, stack))
+        for(int x = 0; x <= range; x++)
+            for(int y = 0; y <= range; y++)
+                for(int z = 0; z <= range; z++)
+                    if(worldIn.canBlockBePlaced(ModBlocks.randomBlock, pos.add(x, y, z), false, side, playerIn, stack) && stack.stackSize > 0) {
                         worldIn.setBlockState(pos.add(x, y, z), ModBlocks.randomBlock.getDefaultState());
+                        stack.stackSize--;
+                    }
         return false;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List tooltip, boolean advanced) {
+        tooltip.add("Does very Random Things");
+        tooltip.add("is a random thing");
+        tooltip.add("wielded by " + playerIn.getDisplayNameString());
+    }
+
+    @Override
+    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn) {
+        playerIn.heal(itemStackIn.stackSize / 8.0f);
+        return super.onItemRightClick(itemStackIn, worldIn, playerIn);
     }
 }
