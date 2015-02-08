@@ -1,3 +1,13 @@
+#items
 item.NotaThing:RandomThing.name=Random Thing
+
+#blocks
 tile.NotaThing:RandomBlock.name=Random Block
+
+#creative tabs
 itemGroup.NotaThing=Not a Thing
+
+#keys
+keys.NotaThing.explode=Explode
+keys.NotaThing.deexplode=De-Explode
+keys.NotaThing.category=Not a Thing

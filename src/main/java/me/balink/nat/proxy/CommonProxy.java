@@ -1,4 +1,8 @@
 package me.balink.nat.proxy;
 
-public abstract class CommonProxy implements IProxy {
+public abstract class CommonProxy {
+    public void registerKeyBindings() {
+    }
+
+    ;
 }
