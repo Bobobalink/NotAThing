@@ -36,8 +36,8 @@ public class NotaThing {
         ModRecipes.init();
         FMLCommonHandler.instance().bus().register(new KeyInputEventHandler());
         if(event.getSide() == Side.CLIENT) {
-            ModItems.clientInit();
-            ModBlocks.clientInit();
+            ModItems.modelInit();
+            ModBlocks.modelInit();
         }
     }
 
