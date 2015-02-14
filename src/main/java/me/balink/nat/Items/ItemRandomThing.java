@@ -23,38 +23,48 @@ public class ItemRandomThing extends ItemNAT {
     @Override
     public float getStrVsBlock(ItemStack stack, Block block) {
         if(block instanceof BlockNAT)
-            return (stack.stackSize * NBTHelper.getByte(stack, "powar", (byte) 1));
-        return (stack.stackSize * NBTHelper.getByte(stack, "powar", (byte) 1)) / 8.0f;
+            return NBTHelper.getByte(stack, "powar", (byte) 1);
+        return NBTHelper.getByte(stack, "powar", (byte) 1) / 8.0f;
     }
 
     @Override
     public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack) {
-        entityLiving.attackEntityFrom(DamageSource.generic, (stack.stackSize * NBTHelper.getByte(stack, "powar", (byte) 1)) / 8.0f);
+        entityLiving.attackEntityFrom(DamageSource.generic, NBTHelper.getByte(stack, "powar", (byte) 1) / 8.0f);
         return false;
     }
 
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
-        int range = (stack.stackSize * NBTHelper.getByte(stack, "powar", (byte) 1)) / 8 + 1;
+        int range = NBTHelper.getByte(stack, "powar", (byte) 1) / 8 + 1;
+        int numGoes = 0;
+        outerloop:
         for(int x = 0; x <= range; x++)
             for(int y = 0; y <= range; y++)
                 for(int z = 0; z <= range; z++)
                     if(worldIn.canBlockBePlaced(ModBlocks.randomBlock, pos.add(x, y, z), false, side, playerIn, stack) && removeItem(stack, playerIn)) {
                         worldIn.setBlockState(pos.add(x, y, z), ModBlocks.randomBlock.getDefaultState());
+                        if(numGoes >= range)
+                            break outerloop;
+                        else
+                            numGoes--;
                     }
         return false;
     }
 
     private boolean removeItem(ItemStack inUse, EntityPlayer player) {
-        for(ItemStack itemStack : player.inventory.mainInventory) {
-            if(itemStack != null && itemStack.getItem() instanceof ItemRandomThing && !(itemStack == inUse)) {
-                itemStack.stackSize--;
+        ItemStack[] mainInventory = player.inventory.mainInventory;
+        for(int i = 0; i < mainInventory.length; i++) {
+            ItemStack itemStack = mainInventory[i];
+            if(itemStack != null && !(itemStack == inUse) && itemStack.getItem() instanceof ItemRandomThing && itemStack.stackSize > 0) {
+                if(NBTHelper.getByte(itemStack, "powar", (byte) 1) <= 1) {
+                    itemStack.stackSize--;
+                    if(itemStack.stackSize <= 0)
+                        mainInventory[i] = null;
+                }
+                else
+                    NBTHelper.setByte(itemStack, "powar", (byte) (NBTHelper.getByte(itemStack, "powar", (byte) 1) - 1));
                 return true;
             }
-        }
-        if(inUse.stackSize > 0) {
-            inUse.stackSize--;
-            return true;
         }
         return false;
     }
@@ -69,7 +79,7 @@ public class ItemRandomThing extends ItemNAT {
 
     @Override
     public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn) {
-        playerIn.heal((itemStackIn.stackSize * NBTHelper.getByte(itemStackIn, "powar", (byte) 1)) / 8.0f);
+        playerIn.heal(NBTHelper.getByte(itemStackIn, "powar", (byte) 1) / 8.0f);
         return super.onItemRightClick(itemStackIn, worldIn, playerIn);
     }
 
