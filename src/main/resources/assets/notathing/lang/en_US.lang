@@ -1,5 +1,6 @@
 #items
 item.NotaThing:RandomThing.name=Random Thing
+item.NotaThing:BuildLaser.name=Buildy Laser Related Thing
 
 #blocks
 tile.NotaThing:RandomBlock.name=Random Block
