@@ -85,6 +85,12 @@ public class NBTHelper {
 
     }
 
+    // everybody loves java's unnecessary typing crap
+    public static byte getByte(ItemStack itemStack, String keyName, int defaultValue) {
+        return getByte(itemStack, keyName, (byte) defaultValue);
+
+    }
+
     public static byte getByte(ItemStack itemStack, String keyName, byte defaultValue) {
         initNBTTagCompound(itemStack);
 

@@ -7,4 +7,9 @@ public final class Names {
         public static final String DEEXPLODE = "keys.NotaThing.deexplode";
 
     }
+
+    public static final class NBT {
+        public static final String RANDOM_THING_POWER = "power";
+
+    }
 }
