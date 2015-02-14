@@ -2,7 +2,7 @@ package me.balink.nat.Recipes;
 
 import me.balink.nat.Items.ItemRandomThing;
 import me.balink.nat.init.ModItems;
-import me.balink.nat.reference.Names;
+import me.balink.nat.reference.NBT;
 import me.balink.nat.util.NBTHelper;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
@@ -20,10 +20,10 @@ public class RandomThingRecipe extends ShapelessOreRecipe {
         byte power = 0;
         for(int i = 0; i < var1.getSizeInventory(); i++) {
             if(var1.getStackInSlot(i) != null)
-                power += power < 64 ? NBTHelper.getByte(var1.getStackInSlot(i), Names.NBT.RANDOM_THING_POWER, 1) : 0;
+                power += power < 64 ? NBTHelper.getByte(var1.getStackInSlot(i), NBT.Byte.RANDOM_THING_POWER, 1) : 0;
 
         }
-        NBTHelper.setByte(out, Names.NBT.RANDOM_THING_POWER, power < 64 ? power : 64);
+        NBTHelper.setByte(out, NBT.Byte.RANDOM_THING_POWER, power < 64 ? power : 64);
         return out;
     }
 

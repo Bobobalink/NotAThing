@@ -2,7 +2,7 @@ package me.balink.nat.Items;
 
 import me.balink.nat.blocks.BlockNAT;
 import me.balink.nat.init.ModBlocks;
-import me.balink.nat.reference.Names;
+import me.balink.nat.reference.NBT;
 import me.balink.nat.util.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,19 +24,19 @@ public class ItemRandomThing extends ItemNAT {
     @Override
     public float getStrVsBlock(ItemStack stack, Block block) {
         if(block instanceof BlockNAT)
-            return NBTHelper.getByte(stack, Names.NBT.RANDOM_THING_POWER, 1);
-        return NBTHelper.getByte(stack, Names.NBT.RANDOM_THING_POWER, 1) / 8.0f;
+            return NBTHelper.getByte(stack, NBT.Byte.RANDOM_THING_POWER, 1);
+        return NBTHelper.getByte(stack, NBT.Byte.RANDOM_THING_POWER, 1) / 8.0f;
     }
 
     @Override
     public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack) {
-        entityLiving.attackEntityFrom(DamageSource.generic, NBTHelper.getInt(stack, Names.NBT.RANDOM_THING_POWER, 1) / 8.0f);
+        entityLiving.attackEntityFrom(DamageSource.generic, NBTHelper.getInt(stack, NBT.Byte.RANDOM_THING_POWER, 1) / 8.0f);
         return false;
     }
 
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
-        int range = NBTHelper.getByte(stack, Names.NBT.RANDOM_THING_POWER, 1) / 8 + 1;
+        int range = NBTHelper.getByte(stack, NBT.Byte.RANDOM_THING_POWER, 1) / 8 + 1;
         int numGoes = 0;
         outerLoop:
         for(int x = 0; x <= range; x++)
@@ -57,13 +57,13 @@ public class ItemRandomThing extends ItemNAT {
         for(int i = 0; i < mainInventory.length; i++) {
             ItemStack itemStack = mainInventory[i];
             if(itemStack != null && !(itemStack == inUse) && itemStack.getItem() instanceof ItemRandomThing && itemStack.stackSize > 0) {
-                if(NBTHelper.getByte(itemStack, Names.NBT.RANDOM_THING_POWER, 1) <= 1) {
+                if(NBTHelper.getByte(itemStack, NBT.Byte.RANDOM_THING_POWER, 1) <= 1) {
                     itemStack.stackSize--;
                     if(itemStack.stackSize <= 0)
                         mainInventory[i] = null;
                 }
                 else
-                    NBTHelper.setByte(itemStack, Names.NBT.RANDOM_THING_POWER, (byte) (NBTHelper.getByte(itemStack, Names.NBT.RANDOM_THING_POWER, 1) - 1));
+                    NBTHelper.setByte(itemStack, NBT.Byte.RANDOM_THING_POWER, (byte) (NBTHelper.getByte(itemStack, NBT.Byte.RANDOM_THING_POWER, 1) - 1));
                 return true;
             }
         }
@@ -75,18 +75,18 @@ public class ItemRandomThing extends ItemNAT {
         tooltip.add("Does very Random Things");
         tooltip.add("is a random thing");
         tooltip.add("wielded by " + playerIn.getDisplayNameString());
-        tooltip.add("power: " + NBTHelper.getByte(stack, Names.NBT.RANDOM_THING_POWER, 1));
+        tooltip.add("power: " + NBTHelper.getByte(stack, NBT.Byte.RANDOM_THING_POWER, 1));
     }
 
     @Override
     public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn) {
-        playerIn.heal(NBTHelper.getByte(itemStackIn, Names.NBT.RANDOM_THING_POWER, 1) / 8.0f);
+        playerIn.heal(NBTHelper.getByte(itemStackIn, NBT.Byte.RANDOM_THING_POWER, 1) / 8.0f);
         return super.onItemRightClick(itemStackIn, worldIn, playerIn);
     }
 
     @Override
     public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
-        if(!NBTHelper.hasTag(stack, Names.NBT.RANDOM_THING_POWER))
-            NBTHelper.setByte(stack, Names.NBT.RANDOM_THING_POWER, (byte) 1);
+        if(!NBTHelper.hasTag(stack, NBT.Byte.RANDOM_THING_POWER))
+            NBTHelper.setByte(stack, NBT.Byte.RANDOM_THING_POWER, (byte) 1);
     }
 }
