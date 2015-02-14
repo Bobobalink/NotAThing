@@ -131,13 +131,13 @@ public class NBTHelper {
         initNBTTagCompound(itemStack);
 
         if(!itemStack.getTagCompound().hasKey(keyName)) {
-            setInteger(itemStack, keyName, defaultValue);
+            setInt(itemStack, keyName, defaultValue);
         }
 
         return itemStack.getTagCompound().getInteger(keyName);
     }
 
-    public static void setInteger(ItemStack itemStack, String keyName, int keyValue) {
+    public static void setInt(ItemStack itemStack, String keyName, int keyValue) {
         initNBTTagCompound(itemStack);
 
         itemStack.getTagCompound().setInteger(keyName, keyValue);
